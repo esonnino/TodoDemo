@@ -73,11 +73,11 @@ function createTaskElement(task, animate) {
     deleteBtn.className = "delete-button";
     deleteBtn.addEventListener('click', function() {
         li.classList.add('todoItem-remove', 'animated', 'slideOutRight');
-        setTimeout(function() {
-            li.remove();
-            deleteTask(task);
-            animateTasksUp();
-        }, 100);
+       
+        li.remove();
+        deleteTask(task);
+        animateTasksUp();
+        
     });
 
     li.appendChild(checkbox);

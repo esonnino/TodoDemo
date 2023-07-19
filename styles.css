@@ -1,10 +1,10 @@
 body {
     font-family: 'Helvetica Neue', sans-serif;
-    background-color: #f0f0f0;
+    background-color: #262626;
 }
 
 header #appTitle {
-    color: #000;
+    color: #fff;
     font-size: 18px;
     font-weight: 700;
     display: flex;
@@ -61,12 +61,17 @@ header #appTitle {
     background: #FFF;
     margin: 48px;
     overflow: auto;
+    box-shadow:
+    inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(255, 255, 255, 0.3);
     transition: all 0.5s ease-in-out;
 }
 
 #newTaskContainer {
     margin-left: 20px;
     overflow-x: hidden;
+    background-color: transparent;
 }
 
 #newTaskInput {
@@ -74,6 +79,7 @@ header #appTitle {
     height: 48px;
     border-radius: 5px;
     border: none;
+    background-color: transparent;
     outline: none;
 }
 
