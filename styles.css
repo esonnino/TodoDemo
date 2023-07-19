@@ -149,6 +149,11 @@ header #appTitle {
     font-size: 1.2em;
 }
 
+.delete-button:before {
+    content: "\f2ed";
+    font-family: "Font Awesome 5 Free";
+}
+
 .todoItem:hover .delete-button {
     visibility: visible;
 }

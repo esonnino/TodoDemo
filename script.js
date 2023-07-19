@@ -56,7 +56,7 @@ function createTaskElement(task, animate) {
         if (this.checked) {
             task.completed = true;
             li.classList.add('completed');
-            createConfetti();
+            createConfetti(checkbox);
         } else {
             task.completed = false;
             li.classList.remove('completed');
@@ -69,7 +69,7 @@ function createTaskElement(task, animate) {
     text.contentEditable = "false";
 
     var deleteBtn = document.createElement('button');
-    deleteBtn.textContent = "Delete";
+    deleteBtn.textContent = "";
     deleteBtn.className = "delete-button";
     deleteBtn.addEventListener('click', function() {
         li.classList.add('todoItem-remove', 'animated', 'slideOutRight');
@@ -77,7 +77,7 @@ function createTaskElement(task, animate) {
             li.remove();
             deleteTask(task);
             animateTasksUp();
-        }, 1000);
+        }, 100);
     });
 
     li.appendChild(checkbox);
@@ -139,14 +139,18 @@ function animateTasksUp() {
     }
 }
 
-function createConfetti() {
+function createConfetti(checkbox) {
+    var rect = checkbox.getBoundingClientRect();
+    var x = rect.left + (rect.width / 2);
+    var y = rect.top + (rect.height / 2);
     confetti({
         particleCount: 100,
         startVelocity: 30,
         spread: 360,
         ticks: 60,
         origin: {
-            y: 0.5
+            x: x / window.innerWidth,
+            y: y / window.innerHeight
         }
     });
 }
