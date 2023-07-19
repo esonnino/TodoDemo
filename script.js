@@ -8,14 +8,36 @@ document.getElementById('newTaskInput').addEventListener('keydown', function(e) 
     }
 });
 
+var todos = {
+    today: [],
+    week: {
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+        sunday: []
+    }
+};
+
 function addTask(taskText) {
+    var selectedMenu = document.querySelector('.menu-item.selected').id;
+    var today = new Date().toLocaleString('en-US', { weekday: 'long' }).toLowerCase();
+
+    if (selectedMenu === "menu-today") {
+        todos.today.push(taskText);
+    } else if (selectedMenu === "menu-this-week") {
+        todos.week[today].push(taskText);
+    }
+
+    createTaskElement(taskText);
+    document.getElementById('newTaskInput').value = '';
+}
+
+function createTaskElement(taskText) {
     var li = document.createElement('li');
     li.className = 'todoItem';
-    li.addEventListener('click', function(e) {
-        if (e.target !== deleteBtn && e.target !== text) {
-            checkbox.click();
-        }
-    });
 
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -29,17 +51,11 @@ function addTask(taskText) {
 
     var text = document.createElement('span');
     text.textContent = taskText;
-    text.contentEditable = "true";
-    text.placeholder = "Enter task text here...";
-    text.addEventListener('dblclick', function(e) {
-        e.stopPropagation();
-    });
+    text.contentEditable = "false";
 
     var deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.className = 'delete-button';
-    deleteBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
+    deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener('click', function() {
         li.remove();
     });
 
@@ -48,7 +64,28 @@ function addTask(taskText) {
     li.appendChild(deleteBtn);
 
     document.getElementById('todoList').appendChild(li);
-    document.getElementById('newTaskInput').value = '';
+}
+
+function switchList(menuId) {
+    var ul = document.getElementById('todoList');
+    ul.innerHTML = "";
+
+    switch(menuId) {
+        case "menu-today":
+            for (let todo of todos.today) {
+                createTaskElement(todo);
+            }
+            break;
+        case "menu-this-week":
+            for (let day in todos.week) {
+                for (let todo of todos.week[day]) {
+                    createTaskElement(todo);
+                }
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 var menuItems = document.getElementsByClassName('menu-item');
@@ -58,6 +95,7 @@ for (var i = 0; i < menuItems.length; i++) {
             menuItems[j].classList.remove('selected');
         }
         this.classList.add('selected');
+        switchList(this.id);
     });
 }
 
@@ -65,4 +103,5 @@ window.onload = function() {
     var today = new Date();
     var date = today.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     document.getElementById('dateToday').innerText = date;
+    document.getElementById('menu-today').click();
 };

@@ -8,7 +8,7 @@ header #appTitle {
     color: #000;
     font-size: 18px;
     font-weight: 700;
-    margin-left: 164px;
+    margin-left: 97px;
     margin-top: 35px;
 }
 
@@ -55,7 +55,8 @@ header #appTitle {
     border-radius: 24px;
     background: #FFF;
     margin: 48px;
-    overflow: hidden;
+    overflow: auto;
+    transition: all 0.5s ease-in-out;
 }
 
 #newTaskContainer {
@@ -74,6 +75,8 @@ header #appTitle {
 #todoList {
     list-style-type: none;
     padding: 0;
+    max-height: 60vh;
+    overflow-y: scroll;
 }
 
 .todoItem {
@@ -84,6 +87,7 @@ header #appTitle {
     align-items: center;
     box-shadow: none;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
 }
 
 .todoItem span {
@@ -131,6 +135,7 @@ header #appTitle {
     visibility: hidden;
     margin-left: auto;
     cursor: pointer;
+    transition: visibility 0.2s linear;
 }
 
 .todoItem:hover .delete-button {

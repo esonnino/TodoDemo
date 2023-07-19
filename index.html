@@ -10,7 +10,7 @@
     </header>
     <div id="appContainer">
         <div id="menu">
-            <h1 class="menu-item" id="menu-today">Today</h1>
+            <h1 class="menu-item selected" id="menu-today">Today</h1>
             <h1 class="menu-item" id="menu-this-week">This week</h1>
             <h1 class="menu-item" id="menu-this-month">This month</h1>
             <p id="dateToday"></p>
@@ -19,7 +19,9 @@
             <div id="newTaskContainer">
                 <input id="newTaskInput" type="text" placeholder="+ New Task">
             </div>
-            <ul id="todoList"></ul>
+            <div id="todoListsContainer">
+                <ul id="todoList"></ul>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
