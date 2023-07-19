@@ -132,19 +132,6 @@ header #appTitle {
 .todoItem input[type="checkbox"]:checked:before {
     background: black;
 }
-.confetti {
-    position: fixed;
-    width: 24px;
-    height: 24px;
-    opacity: 0.6;
-    border-radius: 50%;
-    animation: fall 3s linear infinite;
-}
-
-@keyframes fall {
-    0% { top: -10%; }
-    100% { top: 100%; }
-}
 
 .todoItem span:empty:before {
     content: attr(placeholder);
@@ -152,10 +139,14 @@ header #appTitle {
 }
 
 .delete-button {
-    visibility: hidden;
-    margin-left: auto;
+    background: none;
+    border: none;
     cursor: pointer;
+    padding: 0;
+    color: #000;
+    visibility: hidden;
     transition: visibility 0.05s linear;
+    font-size: 1.2em;
 }
 
 .todoItem:hover .delete-button {
@@ -164,20 +155,19 @@ header #appTitle {
 
 /* Animations */
 .todoItem-add {
-    animation: slideIn 0.2s forwards ease-in;
+    animation: slideIn 0.3s forwards ease-out;
 }
 
 @keyframes slideIn {
-    from { transform: translateX(20px); opacity: 0; }
-    to { transform: translateX(0px); opacity: 1; }
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0px); opacity: 1; }
 }
 
 .todoItem-remove {
-    animation: slideOut 0.2s forwards ease-out;
+    animation: slideOutRight 0.3s forwards ease-out;
 }
 
-@keyframes slideOut {
+@keyframes slideOutRight {
     from { transform: translateX(0px); opacity: 1; }
-    to { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(-20px); opacity: 0;}
 }
-
