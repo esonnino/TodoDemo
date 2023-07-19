@@ -1,0 +1,138 @@
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f0f0f0;
+    padding: 30px;
+}
+
+header #appTitle {
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 164px;
+    margin-top: 35px;
+}
+
+#appContainer {
+    width: 1289px;
+    height: 866px;
+    border-radius: 44px;
+    background: #262626;
+    display: flex;
+}
+
+#menu {
+    width: 30%;
+    padding: 20px;
+    color: #D9D9D9;
+    margin-top: 42px;
+    margin-left: 84px;
+}
+
+#menu h1 {
+    font-size: 64px;
+    letter-spacing: -1.5px;
+    margin: 0;
+    font-weight: 700;
+    color: #434343;
+    transition: all 0.20s ease;
+}
+
+#menu .selected {
+    color: #fff;
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+#dateToday {
+    color: #D9D9D9;
+    font-size: 18px;
+    letter-spacing: -0.2px;
+    opacity: 0.6;
+}
+
+#todoApp {
+    width: 654px;
+    border-radius: 24px;
+    background: #FFF;
+    margin: 48px;
+    overflow: hidden;
+}
+
+#newTaskContainer {
+    margin-left: 30px;
+}
+
+#newTaskInput {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+#todoList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todoItem {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.todoItem span {
+    color: #1D2939;
+    font-size: 18px;
+    display: inline-block;
+    width: 100%;
+    cursor: text;
+}
+
+.todoItem.completed span {
+    text-decoration: line-through;
+}
+
+.todoItem input[type="checkbox"] {
+    width: 29px;
+    height: 29px;
+    margin-right: 10px;
+    border-radius: 50%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+}
+
+.todoItem input[type="checkbox"]:before {
+    content: "";
+    display: block;
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    border: 1px solid grey;
+}
+
+.todoItem input[type="checkbox"]:checked:before {
+    background: black;
+}
+
+.todoItem span:empty:before {
+    content: attr(placeholder);
+    color: #bbb;
+}
+
+.delete-button {
+    visibility: hidden;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.todoItem:hover .delete-button {
+    visibility: visible;
+}
