@@ -28,8 +28,7 @@ header #appTitle {
 #menu {
     width: 40%;
     color: #D9D9D9;
-    margin-top: 42px;
-    margin-left: 94px;
+    margin: 42px 0 0 94px;
 }
 
 #menu h1 {
@@ -46,6 +45,7 @@ header #appTitle {
     color: #fff;
     opacity: 1;
     transform: scale(1.05);
+    transform-origin: 0;
 }
 
 #dateDisplay {
@@ -184,7 +184,7 @@ header #appTitle {
     to { transform: translateX(-20px); opacity: 0;}
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 900px) {
     #appContainer {
         flex-direction: column;
     }
@@ -204,5 +204,60 @@ header #appTitle {
         color: #434343;
         transition: all 0.20s ease;
     }
+
+    #dateDisplay {
+        color: #D9D9D9;
+        font-size: 15px;
+        letter-spacing: -0.2px;
+        opacity: 0.6;
+    }
+
+    header #appTitle {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        display: flex;
+        margin-left: -427px;
+        margin-top: 35px;
+        justify-content: center;
+    }
     
+}
+@media screen and (max-device-width: 480px) {
+    #appContainer {
+        flex-direction: column;
+    }
+
+    #menu, #todoApp {
+        width: 60%;
+        min-width: 480px;
+        margin: 10px;
+    }
+
+    #menu h1 {
+        font-size: 32px;
+        word-wrap: break-word;
+        letter-spacing: -1.5px;
+        margin: 0;
+        font-weight: 700;
+        color: #434343;
+        transition: all 0.20s ease;
+    }
+
+    #dateDisplay {
+        color: #D9D9D9;
+        font-size: 15px;
+        letter-spacing: -0.2px;
+        opacity: 0.6;
+    }
+
+    header #appTitle {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        display: flex;
+        margin-left: -427px;
+        margin-top: 35px;
+        justify-content: center;
+    }
 }
