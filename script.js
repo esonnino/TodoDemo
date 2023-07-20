@@ -162,13 +162,41 @@ for (var i = 0; i < menuItems.length; i++) {
             menuItems[j].classList.remove('selected');
         }
         this.classList.add('selected');
+        updateDateDisplay(this.id);
         switchList(this.id);
     });
 }
 
-window.onload = function() {
+function resetInputBox() {
+    document.getElementById('newTaskInput').value = '';
+}
+
+function getWeek(date) {
+    var startOfWeek = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+    var start = new Date(date.setDate(startOfWeek));
+    var end = new Date(date.setDate(startOfWeek + 5));
+    return `${start.toLocaleString('en-US', { month: 'short', day: 'numeric' })} - ${end.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+}
+
+function updateDateDisplay(menuId) {
     var today = new Date();
-    var date = today.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-    document.getElementById('dateToday').innerText = date;
+    var dateDisplay = document.getElementById('dateDisplay');
+
+    switch(menuId) {
+        case "menu-today":
+            dateDisplay.innerText = today.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            break;
+        case "menu-this-week":
+            dateDisplay.innerText = getWeek(today);
+            break;
+        case "menu-this-month":
+            dateDisplay.innerText = today.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+            break;
+        default:
+            break;
+    }
+}
+
+window.onload = function() {
     document.getElementById('menu-today').click();
 };
