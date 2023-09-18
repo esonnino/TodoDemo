@@ -56,7 +56,7 @@ function createTaskElement(task, animate) {
         if (this.checked) {
             task.completed = true;
             li.classList.add('completed');
-            createConfetti(checkbox);
+            createConfetti();
         } else {
             task.completed = false;
             li.classList.remove('completed');
@@ -69,15 +69,15 @@ function createTaskElement(task, animate) {
     text.contentEditable = "false";
 
     var deleteBtn = document.createElement('button');
-    deleteBtn.textContent = "";
+    deleteBtn.textContent = "Delete";
     deleteBtn.className = "delete-button";
     deleteBtn.addEventListener('click', function() {
         li.classList.add('todoItem-remove', 'animated', 'slideOutRight');
-       
-        li.remove();
-        deleteTask(task);
-        animateTasksUp();
-        
+        setTimeout(function() {
+            li.remove();
+            deleteTask(task);
+            animateTasksUp();
+        }, 1000);
     });
 
     li.appendChild(checkbox);
@@ -139,18 +139,14 @@ function animateTasksUp() {
     }
 }
 
-function createConfetti(checkbox) {
-    var rect = checkbox.getBoundingClientRect();
-    var x = rect.left + (rect.width / 2);
-    var y = rect.top + (rect.height / 2);
+function createConfetti() {
     confetti({
         particleCount: 100,
         startVelocity: 30,
         spread: 360,
         ticks: 60,
         origin: {
-            x: x / window.innerWidth,
-            y: y / window.innerHeight
+            y: 0.5
         }
     });
 }
@@ -162,41 +158,13 @@ for (var i = 0; i < menuItems.length; i++) {
             menuItems[j].classList.remove('selected');
         }
         this.classList.add('selected');
-        updateDateDisplay(this.id);
         switchList(this.id);
     });
 }
 
-function resetInputBox() {
-    document.getElementById('newTaskInput').value = '';
-}
-
-function getWeek(date) {
-    var startOfWeek = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
-    var start = new Date(date.setDate(startOfWeek));
-    var end = new Date(date.setDate(startOfWeek + 5));
-    return `${start.toLocaleString('en-US', { month: 'short', day: 'numeric' })} - ${end.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
-}
-
-function updateDateDisplay(menuId) {
-    var today = new Date();
-    var dateDisplay = document.getElementById('dateDisplay');
-
-    switch(menuId) {
-        case "menu-today":
-            dateDisplay.innerText = today.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-            break;
-        case "menu-this-week":
-            dateDisplay.innerText = getWeek(today);
-            break;
-        case "menu-this-month":
-            dateDisplay.innerText = today.toLocaleString('en-US', { month: 'long', year: 'numeric' });
-            break;
-        default:
-            break;
-    }
-}
-
 window.onload = function() {
+    var today = new Date();
+    var date = today.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    document.getElementById('dateToday').innerText = date;
     document.getElementById('menu-today').click();
 };
